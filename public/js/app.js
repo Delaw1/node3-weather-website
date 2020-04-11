@@ -1,4 +1,4 @@
-fetch('http://localhost:3000/weather?address=london').then((response) => {
+fetch('/weather?address=london').then((response) => {
     response.json().then(data => {
         if(data.error) {
             return console.log(data.error)
@@ -6,7 +6,7 @@ fetch('http://localhost:3000/weather?address=london').then((response) => {
         return console.log(data.location)
     })
 })
-const url = 'http://localhost:3000/weather?address='
+const url = '/weather?address='
 const weatherForm = document.querySelector('form')
 const search = document.querySelector('input')
 const msg1 = document.querySelector('#msg1')
@@ -14,6 +14,7 @@ const msg2 = document.querySelector('#msg2')
 
 weatherForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    msg1.textContent = "Loading..."
     const address = search.value
     fetch(url+address).then(resp => {
         resp.json().then(data => {
